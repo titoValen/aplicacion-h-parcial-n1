@@ -1,4 +1,4 @@
-import * as eventService from "../services/event.service.js";
+import * as eventService from "../../services/event.service.js";
 
 // TODO: Agregar views para el manejo de salidas
 
