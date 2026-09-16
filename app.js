@@ -1,7 +1,11 @@
 import express from "express";
 import { connectDB } from "./config/db.js";
+import eventRoutes from "./api/routes/event.routes.js";
 
 const app = express();
+
+app.use(express.json());
+app.use("/api/events", eventRoutes);
 
 const startServer = async () => {
   try {
