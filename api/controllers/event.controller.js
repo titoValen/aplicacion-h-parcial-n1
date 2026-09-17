@@ -27,10 +27,16 @@ export async function getEventById(req, res) {
 
 export async function createEvent(req, res) {
   try {
-    const { name, description, link, img, artists, section } = req.body;
+    const { name, description, link, img, artists, section, attendeeId } =
+      req.body;
     const newEvent = { name, description, link, img, artists, section };
+
+    if (attendeeId) {
+      newEvent.attendeeId = attendeeId;
+    }
+
     const event = await eventService.createEvent(newEvent);
-    res.status(201).json(event);
+    res.status(201).json({ message: "Evento creado", id: event.insertedId });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
