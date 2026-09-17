@@ -22,7 +22,13 @@ export async function getEventById(id) {
 }
 
 export async function createEvent(data) {
-  const result = await db.collection("events").insertOne(data);
+  const eventData = { ...data };
+
+  if (eventData.attendeeId) {
+    eventData.attendeeId = new ObjectId(eventData.attendeeId);
+  }
+
+  const result = await db.collection("events").insertOne(eventData);
   return result;
 }
 
@@ -52,4 +58,12 @@ export async function deleteEvent(id) {
     .collection("events")
     .deleteOne({ _id: new ObjectId(id) });
   return result;
+}
+
+export async function getEventsByAttendeeId(attendeeId) {
+  const events = await db
+    .collection("events")
+    .find({ attendeeId: new ObjectId(attendeeId) })
+    .toArray();
+  return events;
 }
