@@ -2,6 +2,7 @@ import express from "express";
 import { connectDB } from "./config/db.js";
 import eventRoutes from "./api/routes/event.routes.js";
 import attendeeRoutes from "./api/routes/attendee.routes.js";
+import viewRoutes from "./routes/view.routes.js";
 
 const app = express();
 
@@ -10,7 +11,9 @@ app.use("/api/events", eventRoutes);
 app.use("/api/attendees", attendeeRoutes);
 
 app.set("view engine", "ejs");
-app.set("view", "./views");
+app.set("views", "./views");
+
+app.use("/", viewRoutes);
 
 const startServer = async () => {
   try {
