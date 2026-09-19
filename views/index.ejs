@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>EventBeat</title>
+  </head>
+  <body>
+    <h1>EventBeat</h1>
+    <nav>
+      <ul>
+        <% sections.forEach(function(section) { %>
+          <li><a href="/section/<%= section.slug %>"><%= section.name %></a></li>
+        <% }); %>
+      </ul>
+    </nav>
+  </body>
+</html>
