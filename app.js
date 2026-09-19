@@ -9,6 +9,9 @@ app.use(express.json());
 app.use("/api/events", eventRoutes);
 app.use("/api/attendees", attendeeRoutes);
 
+app.set("view engine", "ejs");
+app.set("view", "./views");
+
 const startServer = async () => {
   try {
     await connectDB();
